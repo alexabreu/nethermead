@@ -1,0 +1,16 @@
+<%= form_for :search_result, url: {action: 'find'}, html: {class: 'form'} do |f| %>
+	<div class="form-group">
+	  <%= f.label :company_name %>
+	  <%= f.text_field :company_name, class: 'form-control' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :state_name %>
+		<%= select('search_result', 'state_name', {NY:'NY'}, ) %>
+	</div>
+	<div class="form-group">
+		<%= f.label :product_class %>
+		<%= select('search_result', 'product_class', {Medicare:'Medicare'}, ) %>
+	</div>
+	
+	<%= f.submit :'View Results', class: 'btn btn-primary pull-right' %>
+<% end %>
