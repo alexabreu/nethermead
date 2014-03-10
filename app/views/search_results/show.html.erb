@@ -1,3 +1,50 @@
-<h1>SearchResults#show</h1>
-<p>Find me in app/views/search_results/show.html.erb</p>
-<%= @search_result.inspect %> 
+<header>
+<div class="row">
+	<div class="col-md-8">
+		<h2>Market Summary: Results</h2>
+		
+		<p>See the Nethermead analysis snapshot below. The Nethermead platform will allow healthcare companies to conduct deeper analysis of these items, run simulations and forecasts and generate plans for execution.
+		</p>
+	</div>
+	<div class="col-md-4">
+		<div class="share pull-right">Share</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+	<div class="search-parameters fill grey5">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<h3 class="grey"><%= @r.company_name %></h3>
+					</td>
+					<td>
+						<div class="product-class mcr">
+					</td>
+					<td>
+						<span class="stateface stateface-replace stateface-ny green">New York</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</header>
+<article>
+	<h3 class="purple">Know where you stand.</h3>
+	<div class="row separated">
+		<div class="col-md-4">
+			<h5>Plan Rank</h5>
+			<p>Nethermead uses market data and a proprietary algorithm to gauge your health plan and product position.</p>
+		</div>
+		<div class="col-md-4">
+			<h5>Market Share</h5>
+			<p>Nethermead calculates this statistic vital to determining the most effective marketing and growth strategies.</p>
+		</div>
+		<div class="col-md-4">
+			<h5>Counties of Operation</h5>
+			<p>Nethermead mapping tools allow a quick view of county-level competitive and demographic information.</p>
+		</div>
+	</div>
+</article>

@@ -1,0 +1,85 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+$white: #fff;
+$black: #1e1e1e;
+$grey1: #6c6c6c;
+$grey2: #717171;
+$grey3: #989585;
+$grey4: #bbb7a7;
+$grey5: #efeee8;
+$green: #299b75;
+$purple: #7e5a78;
+
+.purple {
+	color: $purple;
+}
+
+.green {
+	color: $green;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+
+h2 {
+	color: $black;
+}
+
+h3 {
+	color: $grey1;
+}
+
+h5 {
+	color: $black;
+}
+
+p {
+	color: $grey1;
+	font-family: "Tahoma", sans-serif;
+}
+.fill {
+	padding: 0.5em;
+}
+.fill.grey5 {
+	background: $grey5;
+}
+
+.row.separated {
+	div+div {
+		border-left: 1px solid $grey4;
+	}
+}
+
+.product-class {
+	background: $green;
+	height: 45px;
+	width: 45px;
+	border-radius: 45px;
+	text-transform: uppercase;
+	text-align: center;
+	color: $white;
+	font-size: 14px;
+	padding-top: 11px;
+}
+.product-class.mcr:before {
+	content: "mcr";
+	
+}
