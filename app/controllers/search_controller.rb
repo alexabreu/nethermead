@@ -5,13 +5,18 @@ def index
 end
 
 def find
-	@result = SearchResult.where(company_name: params[:search_result][:company_name],
-															state_name: params[:search_result][:state_name],
-															product_class: params[:search_result][:product_class]
-														  ).first
-	puts @result.inspect
-	
-	redirect_to search_result_path(@result)
+	t = SearchResult.arel_table
+	@result = SearchResult.where(
+							t[:company_name].matches(params[:search_result][:company_name])
+							.and(t[:state_name].eq(params[:search_result][:state_name]))
+							.and(t[:product_class].eq(params[:search_result][:product_class]))
+							).first
+	if @result													  
+		redirect_to search_result_path @result
+	else
+		flash[:notice] = "Whoops. No matching combination."
+		redirect_to search_path
+	end
 end
 
 end

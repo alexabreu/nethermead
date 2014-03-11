@@ -1,4 +1,4 @@
-<%= form_for :search_result, url: {action: 'find'}, html: {class: 'form'} do |f| %>
+<%= form_for :search_result, url: search_path, html: {class: 'form'} do |f| %>
 	<div class="form-group">
 	  <%= f.label :company_name %>
 	  <%= f.text_field :company_name, class: 'form-control' %>

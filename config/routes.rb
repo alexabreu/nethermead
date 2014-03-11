@@ -7,6 +7,7 @@ Nethermead::Application.routes.draw do
   root 'search#index'
 
   # Example of regular route:
+  get 'search' => 'search#index'
   post 'search' => 'search#find'
   
 
