@@ -2,3 +2,8 @@ development:
   adapter: sqlite3
   database: nethermead
   host: localhost
+
+test:
+  adapter: sqlite3
+  database: nethermead_test
+  host: localhost

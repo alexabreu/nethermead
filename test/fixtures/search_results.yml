@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   company_name: MyString
   state_name: MyString
   product_class: MyString
 
 two:
+  id: 2
   company_name: MyString
   state_name: MyString
   product_class: MyString
