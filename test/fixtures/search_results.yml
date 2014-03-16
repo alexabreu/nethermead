@@ -5,9 +5,15 @@ one:
   company_name: MyString
   state_name: MyString
   product_class: MyString
+  company_id: 1
+  state_id: 1
+  product_class_id: 1
 
 two:
   id: 2
   company_name: MyString
   state_name: MyString
   product_class: MyString
+  company_id: 2
+  state_id: 2
+  product_class_id: 2

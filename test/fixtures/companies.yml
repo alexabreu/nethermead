@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name_upper: MyString
+  name_proper: MyString
+
+two:
+  id: 2
+  name_upper: MyString
+  name_proper: MyString
+

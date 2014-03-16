@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: MyString
+  abbr: MyString
+  img_ref: MyString
+
+two:
+  id: 2
+  name: MyString
+  abbr: MyString
+  img_ref: MyString

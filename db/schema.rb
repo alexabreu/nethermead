@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304025953) do
+ActiveRecord::Schema.define(version: 20140316215534) do
+
+  create_table "companies", force: true do |t|
+    t.string   "name_upper"
+    t.string   "name_proper"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_classes", force: true do |t|
+    t.string   "name"
+    t.string   "abbr"
+    t.string   "img_ref"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "search_results", force: true do |t|
     t.string   "company_name"
@@ -27,6 +42,23 @@ ActiveRecord::Schema.define(version: 20140304025953) do
     t.integer  "num_plantype_in_county"
     t.integer  "reportyear"
     t.string   "county"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
+    t.integer  "product_class_id"
+    t.integer  "state_id"
+  end
+
+  add_index "search_results", ["company_id"], name: "index_search_results_on_company_id"
+  add_index "search_results", ["product_class_id"], name: "index_search_results_on_product_class_id"
+  add_index "search_results", ["state_id"], name: "index_search_results_on_state_id"
+
+  create_table "states", force: true do |t|
+    t.string   "state_name"
+    t.string   "state_full_name"
+    t.integer  "state_size"
+    t.string   "intptlat"
+    t.string   "intptlon"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

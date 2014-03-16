@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  state_name: 
+  state_full_name: MyString
+  state_size: 
+  intptlat: MyString
+  intptlon: MyString
+
+two:
+  id: 2
+  state_name: 
+  state_full_name: MyString
+  state_size: 
+  intptlat: MyString
+  intptlon: MyString
