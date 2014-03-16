@@ -20,6 +20,7 @@ $grey3: #989585;
 $grey4: #bbb7a7;
 $grey5: #efeee8;
 $grey6: #f2f1ed;
+$grey7: #666666;
 $green: #299b75;
 $purple: #7e5a78;
 
@@ -47,6 +48,10 @@ h2 {
 
 h3 {
 	color: $grey1;
+}
+
+h4 {
+  color: $grey7;
 }
 
 h5 {
