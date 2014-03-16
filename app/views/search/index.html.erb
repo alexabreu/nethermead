@@ -1,16 +1,23 @@
-<%= form_for :search_result, url: search_path, html: {class: 'form'} do |f| %>
-	<div class="form-group">
-	  <%= f.label :company_name %>
-	  <%= f.text_field :company_name, class: 'form-control' %>
-	</div>
-	<div class="form-group">
-		<%= f.label :state_name %>
-		<%= select('search_result', 'state_name', {NY:'NY'}, ) %>
-	</div>
-	<div class="form-group">
-		<%= f.label :product_class %>
-		<%= select('search_result', 'product_class', {Medicare:'Medicare'}, ) %>
-	</div>
-	
-	<%= f.submit :'View Results', class: 'btn btn-primary pull-right' %>
-<% end %>
+<div class="container-fluid container-padded">
+<div class="row">
+  <div class="col-md-12">
+    <h2>Market Summary</h2>
+    <p>
+      Enter health insurance company information below to obtain key market and consumer insights. Results are powered by Nethermead's unique knowledge base specifically tailored to the healthcare industry.
+    </p>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid background-light-grey container-padded">
+  <div class="row">
+    <div class="col-md-12">
+      <h4><span class="glyphicon glyphicon-search purple"></span> Enter Company Name</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <input class="form-control" id="company-name-search">
+    </div>
+  </div>
+</div>

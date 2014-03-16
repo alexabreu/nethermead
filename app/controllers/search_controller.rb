@@ -21,9 +21,9 @@ class SearchController < ApplicationController
   end
 
   def companies
-    t = SearchResult.arel_table
-    respond_with SearchResult.where(
-        t[:company_name].matches("%" + params[:company_name] + "%")
+    t = Company.arel_table
+    respond_with Company.where(
+        t[:name_proper].matches("%" + params[:company_name] + "%")
     ).as_json
   end
 

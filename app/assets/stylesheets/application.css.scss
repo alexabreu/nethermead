@@ -19,8 +19,10 @@ $grey2: #717171;
 $grey3: #989585;
 $grey4: #bbb7a7;
 $grey5: #efeee8;
+$grey6: #f2f1ed;
 $green: #299b75;
 $purple: #7e5a78;
+
 
 .purple {
 	color: $purple;
@@ -79,4 +81,8 @@ p {
 .product-class.mcr:before {
 	content: "mcr";
 	
+}
+
+.background-light-grey {
+  background: $grey6;
 }
