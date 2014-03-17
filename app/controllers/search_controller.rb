@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  respond_to :html, :xml, :json
+  respond_to :html, :json
 
   def index
     @search_result = SearchResult.new

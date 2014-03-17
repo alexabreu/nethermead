@@ -8,9 +8,38 @@ companies = new Bloodhound({
   remote: '/companies?company_name=%QUERY'
 });
 
+Company = Backbone.Model.extend({});
+
+ProductOption = Backbone.Model.extend({});
+
+State = Backbone.Model.extend({});
+
+Market = Backbone.Model.extend({
+  intialize: ->
+    this.state = new State(this.get('state'));
+    this.product_option = new ProductOption(this.get('product_option'));
+});
+
+Markets = Backbone.Collection.extend({
+  model: Market
+});
+
+MarketChooser = Backbone.View.extend({
+  el: $('#market-chooser'),
+  initialize: ->
+    this.markets = new Markets();
+    this.markets.url = '/company/' + this.model.id + '/markets';
+    this.markets.fetch();
+});
+
 companies.initialize();
+
 $(document).ready ->
   $('#company-name-search').typeahead(null, {
     displayKey: 'name_proper',
     source: companies.ttAdapter()
-  });
+  }).on('typeahead:selected', (e, suggestion) ->
+    new MarketChooser({model: new Company(suggestion)}).render();
+  );
+
+
