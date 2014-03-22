@@ -91,3 +91,23 @@ p {
 .background-light-grey {
   background: $grey6;
 }
+
+.interested-user-container {
+  padding: 15px 0;
+  background: $green;
+  input.form-control {
+    margin-right: -5px;
+    border-radius: 0px;
+  }
+  .btn {
+    border-radius: 0px;
+    background: #333333;
+    text-transform: uppercase;
+    color: white;
+  }
+  span.title {
+    color: white;
+    line-height: 34px;
+    text-transform: uppercase;
+  }
+}

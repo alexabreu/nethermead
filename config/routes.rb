@@ -18,6 +18,7 @@ Nethermead::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :search_results
+  resources :interested_users
 
   # Example resource route with sub-resources:
   #   resources :products do

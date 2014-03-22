@@ -50,6 +50,20 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="interested-user-container">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <%= form_for :interested_user, url: interested_users_path, html: {class: 'form form-inline pull-right'} do |f| %>
+              <%= f.text_field :email, class: 'form-control', placeholder: 'Enter email' %>
+              <%= f.submit :'Submit', class: 'btn' %>
+            <% end %>
+            <span class="title">Sign up to learn more about your market, consumers, and Nethermead.</span>
+          </div>
+        </div>
+    </div>
+</div>
+
 
 <% if flash[:notice] %>
   <div class="container-fluid">

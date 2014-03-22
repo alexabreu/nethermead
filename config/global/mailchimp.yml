@@ -1,0 +1,10 @@
+production:
+  active: true
+  api_key: efd303e237884dddb6af203ea68e00fb-us3
+  list_id: 1
+
+test:
+  active: false
+
+development:
+  active: false
