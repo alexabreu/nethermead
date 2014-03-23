@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   respond_to :html, :json
+  layout "search"
 
   def index
     @search_result = SearchResult.new

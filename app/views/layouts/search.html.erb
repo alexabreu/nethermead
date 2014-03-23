@@ -1,0 +1,69 @@
+<% content_for :content do %>
+    <%= yield %>
+
+    <script type="text/template" id="state-template">
+    <div class="state-name">{{= state_full_name }}</div>
+    <a href="#">
+        <span class="stateface stateface-{{= state_abbreviation }}"></span>
+        <span class="glyphicon glyphicon-ok-sign"></span>
+    </a>
+    </script>
+
+    <script type="text/template" id="states-template">
+    <div class="container-fluid container-padded">
+    <div class="row">
+      <div class="col-md-12">
+        <h4><span class="glyphicon glyphicon-map-marker purple"></span> Pick a state</h4>
+      </div>
+    </div>
+    <div class="row collection-container states">
+    </div>
+    </div>
+    </script>
+
+
+    <script type="text/template" id="product-class-template">
+    <a href="#"><div class="circle"><div class="product-class-abbr">{{= abbr }}</div></div></a>
+    <div class="product-class-name">{{= name }}<br /><span class="glyphicon glyphicon-ok-sign"></span></div>
+    </script>
+
+    <script type="text/template" id="product-classes-template">
+    <div class="container-fluid background-light-grey container-padded">
+    <div class="row">
+      <div class="col-md-12">
+        <h4><span class="glyphicon glyphicon-list purple"></span> Pick a product class</h4>
+      </div>
+    </div>
+    <div class="row collection-container product-classes-container">
+    </div>
+    </div>
+    </script>
+
+    <script type="text/template" id="company-search-template">
+    <div class="container-fluid background-light-grey container-padded">
+      <div class="row">
+        <div class="col-md-12">
+          <h4><span class="glyphicon glyphicon-search purple"></span> Enter Company Name</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <input class="form-control company-name-search" placeholder="ex. Aetna, Blue Cross, Oxford, etc.">
+        </div>
+      </div>
+    </div>
+
+    <div class="market-chooser-container"></div>
+
+    <div class="container-fluid container-padded">
+      <div class="row">
+        <div class="col-md-12">
+            <a href="#" class="btn btn-success btn-lg search-result-button">View results</a>
+        </div>
+      </div>
+    </div>
+    </script>
+
+
+<% end %>
+<%= render template: "layouts/application" %>

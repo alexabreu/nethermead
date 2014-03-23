@@ -1,18 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
 
 _.templateSettings = {
   interpolate: /\{\{\=(.+?)\}\}/g,
   evaluate: /\{\{(.+?)\}\}/g
 };
 
-
 companies = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name_proper'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   remote: '/companies?company_name=%QUERY'
 });
+
+companies.initialize();
 
 Company = Backbone.Model.extend({});
 
@@ -85,77 +83,84 @@ CollectionView = Backbone.View.extend({
     return this;
 });
 
+StateView = ModelView.extend({
+  template: _.template($('#state-template').html()),
+  className: 'col-md-3',
+  events: {
+    'click a': 'select',
+  },
+  select: (e) ->
+    e.preventDefault();
+    markets.state = this.model;
+    $("a.selected").removeClass("selected");
+    $(".product-classes").remove();
+    $(".market-chooser-container").append(new ProductClassesView({
+      collection: markets.product_classes(this.model)
+    }).render().add_all().$el);
+    this.$("a").addClass("selected");
+    $('.search-result-button').hide();
+    return false;
+});
 
-companies.initialize();
+ProductClassView = ModelView.extend({
+  template: _.template($('#product-class-template').html()),
+  className: 'col-md-2 product-class-container',
+  events: {
+    'click a': 'select',
+  },
+  select: (e) ->
+    e.preventDefault();
+    $(".product-class-container.selected").removeClass("selected");
+    this.$el.addClass("selected");
+    $('.search-result-button').attr('href', '/search/' + markets.company.get("slug") + '/'  + markets.state.get("state_name") + '/' + this.model.get("abbr")).show();
+    return false;
+});
 
-$(document).ready ->
+ProductClassesView = CollectionView.extend({
+  template: _.template($('#product-classes-template').html()),
+  ModelView: ProductClassView,
+  className: 'product-classes'
+});
 
-  StateView = ModelView.extend({
-    template: _.template($('#state-template').html()),
-    className: 'col-md-3',
-    events: {
-      'click a': 'select',
-    },
-    select: (e) ->
-      e.preventDefault();
-      markets.state = this.model;
-      $("a.selected").removeClass("selected");
-      $(".product-classes").remove();
-      $("#market-chooser").append(new ProductClassesView({
-        collection: markets.product_classes(this.model)
-      }).render().add_all().$el);
-      this.$("a").addClass("selected");
-      $('#search-result-button').hide();
-      return false;
-  });
+StatesView = CollectionView.extend({
+  ModelView: StateView,
+  template: _.template($('#states-template').html()),
+});
 
-  ProductClassView = ModelView.extend({
-    template: _.template($('#product-class-template').html()),
-    className: 'col-md-2 product-class-container',
-    events: {
-      'click a': 'select',
-    },
-    select: (e) ->
-      e.preventDefault();
-      $(".product-class-container.selected").removeClass("selected");
-      this.$el.addClass("selected");
-      $('#search-result-button').attr('href', '/search/' + markets.company.get("slug") + '/'  + markets.state.get("state_name") + '/' + this.model.get("abbr")).show();
-      return false;
-  });
+markets = new Markets();
 
-  ProductClassesView = CollectionView.extend({
-    template: _.template($('#product-classes-template').html()),
-    ModelView: ProductClassView,
-    className: 'product-classes'
-  });
+MarketChooser = Backbone.View.extend({
+  initialize: ->
+    markets.url = '/company/' + this.model.id + '/markets';
+  render: ->
+    markets.bind("sync", this.show_states, this);
+    markets.fetch();
+    return this;
+  show_states: ->
+    this.$el.html(new StatesView({collection: markets.states()}).render().add_all().$el);
+});
 
-  StatesView = CollectionView.extend({
-    ModelView: StateView,
-    template: _.template($('#states-template').html()),
-  });
 
-  markets = new Markets();
+window.CompanySearch = Backbone.View.extend({
+  template: _.template($('#company-search-template').html()),
+  render: ->
+    this.$el.html(this.template());
+    _this = this;
+    this.$('.search-result-button').hide();
+    this.$('.company-name-search').typeahead(null, {
+      displayKey: 'name_proper',
+      source: companies.ttAdapter()
+    }).on('typeahead:selected', (e, suggestion) ->
+      markets.company = new Company(suggestion);
+      _this.$('.market-chooser-container').html(new MarketChooser({model: markets.company}).render().$el);
+    );
+    return this;
+});
 
-  MarketChooser = Backbone.View.extend({
-    el: $('#market-chooser'),
-    initialize: ->
-      markets.url = '/company/' + this.model.id + '/markets';
-    render: ->
-      markets.bind("sync", this.show_states, this);
-      markets.fetch();
-    show_states: ->
-      this.$el.html(new StatesView({collection: markets.states()}).render().add_all().$el);
-  });
 
-  $("#search-result-button").hide();
 
-  $('#company-name-search').typeahead(null, {
-    displayKey: 'name_proper',
-    source: companies.ttAdapter()
-  }).on('typeahead:selected', (e, suggestion) ->
-    markets.company = new Company(suggestion);
-    new MarketChooser({model: markets.company}).render();
-  );
+
+
 
 
 
