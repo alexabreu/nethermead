@@ -111,3 +111,29 @@ p {
     text-transform: uppercase;
   }
 }
+
+#main-navigation {
+  .navbar-nav > li.active > a {
+    color: #222;
+    background: none;
+    text-decoration: none;
+    border-bottom: 2px solid #222;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding-bottom: 2px;
+    margin-bottom: 11px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
+  .navbar-nav>li>a {
+    color: $purple;
+    text-transform: uppercase;
+  }
+
+  .navbar-nav>li>a:hover {
+    color: $green;
+  }
+}
