@@ -20,6 +20,17 @@ class SearchController < ApplicationController
     end
   end
 
+  def show
+    company = Company.where(Company.arel_table[:slug].matches(params[:slug])).first
+    state = State.where(State.arel_table[:state_name].matches(params[:state])).first
+    product_class = ProductClass.where(ProductClass.arel_table[:abbr].matches(params[:class])).first
+    @result = SearchResult.where(
+        company_id: company.id,
+        state_id: state.id,
+        product_class_id: product_class.id
+    ).first
+  end
+
   def companies
     t = Company.arel_table
     respond_with Company.where(

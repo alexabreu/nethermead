@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Company.create([
-    {name_upper: 'PHILLIP CO', name_proper: 'Phillip Co', id: 1},
-    {name_upper: 'ALEX CO', name_proper: 'Alex Co', id: 2},
+    {name_upper: 'PHILLIP CO', name_proper: 'Phillip Co', id: 1, slug: 'phillip-co'},
+    {name_upper: 'ALEX CO', name_proper: 'Alex Co', id: 2, slug: 'alex-co'},
                ])
 
 ProductClass.create([

@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322023726) do
+ActiveRecord::Schema.define(version: 20140323011111) do
 
   create_table "companies", force: true do |t|
     t.string   "name_upper"
     t.string   "name_proper"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "companies", ["slug"], name: "index_companies_on_slug"
 
   create_table "interested_users", force: true do |t|
     t.string   "email"
