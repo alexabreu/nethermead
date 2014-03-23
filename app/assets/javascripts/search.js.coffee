@@ -119,7 +119,7 @@ $(document).ready ->
       e.preventDefault();
       $(".product-class-container.selected").removeClass("selected");
       this.$el.addClass("selected");
-      $('#search-result-button').attr('href', '/search_results/' + markets.get_market(markets.state, this.model).get("id")).show();
+      $('#search-result-button').attr('href', '/search/' + markets.company.get("slug") + '/'  + markets.state.get("state_name") + '/' + this.model.get("abbr")).show();
       return false;
   });
 
@@ -153,7 +153,8 @@ $(document).ready ->
     displayKey: 'name_proper',
     source: companies.ttAdapter()
   }).on('typeahead:selected', (e, suggestion) ->
-    new MarketChooser({model: new Company(suggestion)}).render();
+    markets.company = new Company(suggestion);
+    new MarketChooser({model: markets.company}).render();
   );
 
 
