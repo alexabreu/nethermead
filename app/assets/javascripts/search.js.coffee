@@ -14,6 +14,8 @@ companies.initialize();
 
 Company = Backbone.Model.extend({});
 
+window.Company = Company;
+
 ProductClass = Backbone.Model.extend({});
 
 State = Backbone.Model.extend({
@@ -26,6 +28,8 @@ Market = Backbone.Model.extend({
     this.state = new State(this.get('state'));
     this.product_class = new ProductClass(this.get('product_class'));
 });
+
+window.Market = Market;
 
 Markets = Backbone.Collection.extend({
   model: Market,
@@ -89,8 +93,13 @@ StateView = ModelView.extend({
   events: {
     'click a': 'select',
   },
+  initialize: ->
+    this.model.bind("select", this.choose, this);
   select: (e) ->
     e.preventDefault();
+    this.choose();
+    return false;
+  choose: ->
     markets.state = this.model;
     $("a.selected").removeClass("selected");
     $(".product-classes").remove();
@@ -99,7 +108,7 @@ StateView = ModelView.extend({
     }).render().add_all().$el);
     this.$("a").addClass("selected");
     $('.search-result-button').hide();
-    return false;
+
 });
 
 ProductClassView = ModelView.extend({
@@ -108,12 +117,17 @@ ProductClassView = ModelView.extend({
   events: {
     'click a': 'select',
   },
+  initialize: ->
+    this.model.bind("select", this.choose, this);
   select: (e) ->
     e.preventDefault();
+    this.choose();
+    return false;
+  choose: ->
     $(".product-class-container.selected").removeClass("selected");
     this.$el.addClass("selected");
     $('.search-result-button').attr('href', '/search/' + markets.company.get("slug") + '/'  + markets.state.get("state_name") + '/' + this.model.get("abbr")).show();
-    return false;
+
 });
 
 ProductClassesView = CollectionView.extend({
@@ -137,7 +151,11 @@ MarketChooser = Backbone.View.extend({
     markets.fetch();
     return this;
   show_states: ->
+    this.$el.empty();
+    $(".product-classes").remove();
+    $('.search-result-button').hide();
     this.$el.html(new StatesView({collection: markets.states()}).render().add_all().$el);
+    this.trigger("rendered");
 });
 
 
@@ -155,6 +173,22 @@ window.CompanySearch = Backbone.View.extend({
       _this.$('.market-chooser-container').html(new MarketChooser({model: markets.company}).render().$el);
     );
     return this;
+  prefill: (company, market) ->
+    markets.company = company;
+    this.$('.company-name-search').val(company.get('name_proper'));
+    market_chooser = new MarketChooser({model: markets.company});
+    market_chooser.on("rendered", ->
+      markets.states().each((state) ->
+        if(market.state.get("id") == state.get("id"))
+          state.trigger("select");
+      );
+      markets.product_classes(market.state).each((product_class) ->
+        if(market.product_class.get("id") == product_class.get("id"))
+          product_class.trigger("select");
+      );
+    );
+    this.$('.market-chooser-container').html(market_chooser.render().$el);
+    return true;
 });
 
 

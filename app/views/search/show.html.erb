@@ -1,5 +1,5 @@
 <header>
-  <div class="container-fluid container-padded">
+  <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <h2>Market Summary: Results</h2>
@@ -21,3 +21,26 @@
     </div>
   </div>
 </div>
+
+
+
+<div id="company-search"></div>
+
+<script type="text/javascript">
+    $().ready(function() {
+        var $company_search = $('#company-search');
+        $company_search.hide();
+        var company_search = new window.CompanySearch();
+        $('.edit-search').click(function(e) {
+            e.preventDefault();
+            $('#company-search').html(company_search.render().$el);
+            company_search.prefill(
+                    new window.Company(<%= @result.company.to_json.to_s.html_safe %>),
+                    new window.Market(<%= @result.to_json(:include => [:product_class, :state]).to_s.html_safe %>
+                    ));
+            $company_search.slideDown();
+            return false;
+        });
+
+    });
+</script>
