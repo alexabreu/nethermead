@@ -92,6 +92,14 @@ $grey: #b2afa4;
   display: inline;
 }
 
+.product-class-abbr {
+  text-align: center;
+  text-align: center;
+  font-weight: 800;
+  color: #fff;
+}
+
+
 .circle {
   border-radius: 50%;
   width: 75px;
@@ -99,18 +107,33 @@ $grey: #b2afa4;
   margin: 0 auto;
   margin-bottom: 10px;
   background: $grey;
+
+  .product-class-abbr {
+    width: 75px;
+    font-size: 20px;
+    padding-top: 24px;
+    letter-spacing: -1px;
+  }
 }
 
-.product-class-abbr {
-  text-align: center;
-  width: 75px;
-  text-align: center;
-  font-size: 20px;
-  padding-top: 24px;
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: #fff;
+
+.circle-sm {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background: $green;
+
+  .product-class-abbr {
+    width: 50px;
+    font-size: 16px;
+    padding-top: 14px;
+  }
 }
+
+
 
 .product-class-container a:hover {
   color: $purple;
@@ -167,4 +190,21 @@ $grey: #b2afa4;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.result-title {
+  .stateface {
+    font-size: 60px;
+    position: relative;
+    margin-top: -14px;
+  }
+
+  h3 {
+    margin-right: 10px;
+  }
+
+  a {
+    font-size: 12px;
+    margin-top: 16px;
+  }
 }

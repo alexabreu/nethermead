@@ -49,6 +49,9 @@ h2 {
 h3 {
 	color: $grey1;
 }
+h3.tall {
+  line-height: 10px;
+}
 
 h4 {
   color: $grey7;
@@ -136,4 +139,9 @@ p {
   .navbar-nav>li>a:hover {
     color: $green;
   }
+}
+
+p.summary {
+  letter-spacing: 1px;
+  line-height: 20px;
 }
