@@ -8,7 +8,7 @@ class AlterSearchResults < ActiveRecord::Migration
   	remove_column :search_results, :num_company_in_county
   	remove_column :search_results, :num_company_plan_in_county 
   	remove_column :search_results, :num_plantype_in_county
-    	remove_column :search_results, :county character varying
+    	remove_column :search_results, :county 
 
 	add_column :search_results, :state_enrolled, :bigint
   	add_column :search_results, :state_parent_enrolled, :bigint
