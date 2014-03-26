@@ -250,3 +250,21 @@ $grey1: #727272;
     }
   }
 }
+
+.progress-bar-green {
+  background-image: -webkit-linear-gradient(top, $green 0%, $green 100%);
+  background-image: linear-gradient(to bottom, $green 0%, $green 100%);
+}
+.progress {
+  background: white;
+  height: 24px;
+  border: 1px solid $green;
+  border-radius: 8px;
+}
+
+.slow-bar {
+  -webkit-transition: width 1.0s ease !important;
+  -moz-transition: width 1.0s ease !important;
+  -o-transition: width 1.0s ease !important;
+  transition: width 1.0s ease !important;
+}

@@ -44,13 +44,18 @@
     <div class="col-md-4 border-right">
       <b>Plan Rank</b>
       <p class="summary">Nethermead analyzes market data to gauge your health position.</p>
-      <div class="number-highlight">#3</div>
-      <p class="text-muted"><strong>of 21 similar plans</strong></p>
+      <div class="number-highlight">#<%= @result.share_parent_in_state_rank %></div>
+      <p class="text-muted"><strong>of <%= @result.num_similar_plans %> similar plans</strong></p>
     </div>
     <div class="col-md-4 border-right">
       <b>Market Share</b>
       <p class="summary">Review Market Share for effective marketing and growth strategies.</p>
-      <div class="number-highlight">42%</div>
+      <div class="number-highlight"><%= @result.share_company_in_state * 100 %>%</div>
+      <div class="progress">
+        <div class="progress-bar progress-bar-green slow-bar" id="market-share-graph" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" data-percentage="<%= @result.share_company_in_state * 100 %>">
+          <span class="sr-only"><%= @result.share_company_in_state * 100 %>% Market Share</span>
+        </div>
+      </div>
     </div>
     <div class="col-md-4 border-right">
       <b>Counties of Operation</b>
@@ -167,6 +172,7 @@
 
 <script type="text/javascript">
     $().ready(function() {
+        $('#market-share-graph').css('width',  function(){ return ($(this).attr('data-percentage')+'%')})
         var $company_search = $('#company-search');
         $company_search.hide();
         var company_search = new window.CompanySearch();
