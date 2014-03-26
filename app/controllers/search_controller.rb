@@ -32,6 +32,16 @@ class SearchController < ApplicationController
     ).first
   end
 
+  def share
+    show
+    if params[:email] && params[:email].match(/@/) && params[:message]
+      url = url_for :controller => 'search', :action => 'show', :slug => @result.company.slug, :state => @result.state.state_name, :class => @result.product_class.abbr, :only_path => false
+      ShareMailer.share(params[:email], url, params[:message]).deliver
+    end
+    flash[:notice] = "Thank you for sharing this result!"
+    redirect_to url_for :controller => 'search', :action => 'show', :slug => @result.company.slug, :state => @result.state.state_name, :class => @result.product_class.abbr
+  end
+
   def companies
     t = Company.arel_table
     respond_with Company.where(

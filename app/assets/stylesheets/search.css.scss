@@ -5,6 +5,7 @@
 $green: #299b75;
 $purple: #7e5a78;
 $grey: #b2afa4;
+$grey1: #727272;
 
 .twitter-typeahead {
   width: 100%
@@ -206,5 +207,31 @@ $grey: #b2afa4;
   a {
     font-size: 12px;
     margin-top: 16px;
+  }
+}
+
+.share-box {
+  width: 160px;
+  text-align: center;
+  border: 1px solid $grey;
+  margin-top: 12px;
+  .title {
+    width: 70px;
+    text-transform: uppercase;
+    border-right: 1px solid $grey;
+    height: 44px;
+    line-height: 42px;
+    color: $grey1;
+  }
+  .methods {
+    height: 44px;
+    font-size: 26px;
+    line-height: 50px;
+    a {
+      color: $purple;
+    }
+    a:hover {
+      color: $green;
+    }
   }
 }
