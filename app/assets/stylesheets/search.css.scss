@@ -16,6 +16,21 @@ $grey1: #727272;
   padding-bottom: 36px;
 }
 
+.row-padded {
+  margin-bottom: 10px;
+}
+
+.number-highlight {
+  font-size: 32px;
+  color: $green;
+}
+
+.border-right {
+  border-right: 1px solid #ccc;
+}
+
+
+
 .tt-dropdown-menu {
   width: 100%;
   margin-top: 0px;

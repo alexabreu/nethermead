@@ -34,6 +34,90 @@
 
 <div id="company-search"></div>
 
+<div class="container-fluid container-padded background-light-grey">
+  <div class="row row-padded">
+    <div class="col-md-12">
+      <h3 class="purple">Know where you stand.</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 border-right">
+      <b>Plan Rank</b>
+      <p class="summary">Nethermead analyzes market data to gauge your health position.</p>
+      <div class="number-highlight">#3</div>
+      <p class="text-muted"><strong>of 21 similar plans</strong></p>
+    </div>
+    <div class="col-md-4 border-right">
+      <b>Market Share</b>
+      <p class="summary">Review Market Share for effective marketing and growth strategies.</p>
+      <div class="number-highlight">42%</div>
+    </div>
+    <div class="col-md-4 border-right">
+      <b>Counties of Operation</b>
+      <p class="summary">Use targeting and geomapping tools to visualize your competitve landscape.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid container-padded">
+  <div class="row row-padded">
+    <div class="col-md-12">
+      <h3 class="purple">Know Your Audience.</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <b>Available Market</b>
+      <p class="summary">See the total insurable market opportunity against the uninsured consumer population.</p>
+    </div>
+    <div class="col-md-6">
+      <b>Market Segment</b>
+      <p class="summary">Learn about the communities you want to reach.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="number-highlight">23,455</div>
+      <p class="text-muted"><strong>of 55,789 people</strong></p>
+    </div>
+    <div class="col-md-4">
+      Information Dense Graph
+    </div>
+    <div class="col-md-6">
+      <ul>
+        <li>1. Market Opportunity</li>
+        <li>2. Market Opportunity</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid container-padded background-light-grey">
+  <div class="row row-padded">
+    <div class="col-md-12">
+      <h3 class="purple">Keep tabs on the competition.</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 border-right">
+      <b>Top Competitors</b>
+      <p class="summary">Nethermead ranks and evaluates the competition.</p>
+
+      <ul>
+        <li><%= @result.company.name_proper %></li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <b>Active Competitors</b>
+      <p class="summary">See market information on all competitors in a particular geograph and product category.</p>
+
+      <ul>
+        <li><%= @result.company.name_proper %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-labelledby="link-modal-label" aria-hidden="true">
   <div class="modal-dialog">
