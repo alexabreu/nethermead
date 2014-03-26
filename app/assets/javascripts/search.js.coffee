@@ -126,7 +126,7 @@ ProductClassView = ModelView.extend({
   choose: ->
     $(".product-class-container.selected").removeClass("selected");
     this.$el.addClass("selected");
-    $('.search-result-button').attr('href', '/search/' + markets.company.get("slug") + '/'  + markets.state.get("state_name") + '/' + this.model.get("abbr")).show();
+    $('.search-result-button').attr('href', '/search/' + markets.company.get("slug") + '/'  + markets.state.get("state_name").toLowerCase() + '/' + this.model.get("abbr").toLowerCase()).show();
 
 });
 

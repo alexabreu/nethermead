@@ -127,7 +127,7 @@
         <h4 class="modal-title" id="link-modal-label">Share Market Summary Link</h4>
       </div>
       <div class="modal-body">
-        <input type="text" value="<%= url_for :controller => 'search', :action => 'show', :slug => @result.company.slug, :state => @result.state.state_name, :class => @result.product_class.abbr, :only_path => false %>" class="form-control">
+        <input type="text" value="<%= url_for :controller => 'search', :action => 'show', :slug => @result.company.slug, :state => @result.state.state_name.downcase, :class => @result.product_class.abbr.downcase, :only_path => false %>" class="form-control">
         <div class="text-muted">Copy and paste the sharing URL.</div>
       </div>
       <div class="modal-footer">
@@ -144,7 +144,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="share-modal-label">E-mail Market Summary</h4>
       </div>
-      <%= form_tag url_for(:controller => 'search', :action => 'share', :slug => @result.company.slug, :state => @result.state.state_name, :class => @result.product_class.abbr), {class: 'form'} do %>
+      <%= form_tag url_for(:controller => 'search', :action => 'share', :slug => @result.company.slug, :state => @result.state.state_name.downcase, :class => @result.product_class.abbr.downcase), {class: 'form'} do %>
       <div class="modal-body">
           <div class="form-group">
             <%= text_field 'email', nil, class: 'form-control', placeholder: 'E-mail Address', name: 'email', required: true %>

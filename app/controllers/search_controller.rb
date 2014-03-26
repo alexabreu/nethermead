@@ -23,8 +23,8 @@ class SearchController < ApplicationController
 
   def show
     company = Company.where(Company.arel_table[:slug].matches(params[:slug])).first
-    state = State.where(State.arel_table[:state_name].matches(params[:state])).first
-    product_class = ProductClass.where(ProductClass.arel_table[:abbr].matches(params[:class])).first
+    state = State.where(State.arel_table[:state_name].matches(params[:state].upcase)).first
+    product_class = ProductClass.where(ProductClass.arel_table[:abbr].matches(params[:class].upcase)).first
     @result = SearchResult.where(
         company_id: company.id,
         state_id: state.id,
