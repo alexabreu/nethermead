@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  enrolled: 
+  total_market: 
+  enrolled_pct: 9.99
+  num_pcp: 
+  num_specialists: 
+  num_facilities: 
+  company_rank: 1
+  pricing_pos: 1
+  benefit_loss_pos: 1
+  enrollment_pos: 1
+  revenue_pos: 1
+  media_availability_pos: 1
+
+two:
+  name: MyString
+  enrolled: 
+  total_market: 
+  enrolled_pct: 9.99
+  num_pcp: 
+  num_specialists: 
+  num_facilities: 
+  company_rank: 1
+  pricing_pos: 1
+  benefit_loss_pos: 1
+  enrollment_pos: 1
+  revenue_pos: 1
+  media_availability_pos: 1

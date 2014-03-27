@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_name: MyString
+  county_name: MyString
+  display_name: MyString
+  state_name: MyString
+  product_class_name: MyString
+  rank_order: 1
+  market_share: 9.99
+  reportyear: 1
+  reportdate: 2014-03-27 11:02:59
+
+two:
+  company_name: MyString
+  county_name: MyString
+  display_name: MyString
+  state_name: MyString
+  product_class_name: MyString
+  rank_order: 1
+  market_share: 9.99
+  reportyear: 1
+  reportdate: 2014-03-27 11:02:59
