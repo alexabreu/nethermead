@@ -6,7 +6,7 @@ class CreateSearchResultsCountiesSegments < ActiveRecord::Migration
 	 t.string :product_class_name
 	 t.string :state_name
 	 t.string :segment_name
-      t.bigint :size_num
+      t.integer :size_num, :limit => 8
       t.decimal :size_pct
 	 t.integer :rank_order
 

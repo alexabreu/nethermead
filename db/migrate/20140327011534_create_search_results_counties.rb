@@ -3,26 +3,26 @@ class CreateSearchResultsCounties < ActiveRecord::Migration
     create_table :search_results_counties do |t|
       t.string :county_name
 	 t.string :company_name
-      t.bigint :num_enrolled
-	 t.bigint :num_subscribers
+      t.integer :num_enrolled, :limit => 8
+	 t.integer :num_subscribers, :limit => 8
 	 t.decimal :subscriber_pct
-      t.bigint :total_market
-	 t.bigint :available_market
-	 t.bigint :num_insured
+      t.integer :total_market, :limit => 8
+	 t.integer :available_market, :limit => 8
+	 t.integer :num_insured, :limit => 8
 	 t.decimal :market_penetration
       t.decimal :enrolled_pct
 	 t.decimal :subscriber_pct
-      t.bigint :num_pcp
+      t.integer :num_pcp, :limit => 8
 	 t.decimal :pcp_pct
-      t.bigint :num_specialists
+      t.integer :num_specialists, :limit => 8
 	 t.decimal :specialists_pct
-      t.bigint :num_facilities
+      t.integer :num_facilities, :limit => 8
 	 t.decimal :facilities_pct
       t.integer :company_rank
 	 t.integer :county_rank
 	 t.integer :num_plans
 	 t.integer :num_plan_types
-	 t.bigint :competition_index
+	 t.integer :competition_index, :limit => 8
 	 t.string :competition_status
       t.integer :pricing_pos
       t.integer :benefit_loss_pos

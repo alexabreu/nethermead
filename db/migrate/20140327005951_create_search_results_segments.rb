@@ -1,7 +1,7 @@
 class CreateSearchResultsSegments < ActiveRecord::Migration
   def change
     create_table :search_results_segments do |t|
-      t.bigint :size_num
+      t.integer :size_num, :limit => 8
       t.decimal :size_pct
       t.integer :rank_order
 

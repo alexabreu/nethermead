@@ -3,7 +3,7 @@ class CreateCounties < ActiveRecord::Migration
     create_table :counties do |t|
       t.string :name
       t.string :type
-      t.bigint :size
+      t.integer :size, :limit => 8
       t.string :intptlat
       t.string :intptlon
 
