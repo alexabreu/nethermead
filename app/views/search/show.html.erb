@@ -59,7 +59,17 @@
     </div>
     <div class="col-md-4 border-right">
       <b>Counties of Operation</b>
-      <p class="summary">Use targeting and geomapping tools to visualize your competitve landscape.</p>
+      <p class="summary">Use targeting and geomapping tools to visualize your competitive landscape.</p>
+      <div class="county-competition-graphic pull-left">
+        <span class="stateface stateface-<%= @result.state.abbreviation %> grey"></span>
+      </div>
+      <div class="county-competition-list pull-right">
+        <ul>
+          <% @result.counties.each do |county| %>
+              <li><span class="county-name"><%= county %></span></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -88,12 +98,6 @@
     <div class="col-md-4">
       Information Dense Graph
     </div>
-    <div class="col-md-6">
-      <ul>
-        <li>1. Market Opportunity</li>
-        <li>2. Market Opportunity</li>
-      </ul>
-    </div>
   </div>
 </div>
 
@@ -108,13 +112,19 @@
       <b>Top Competitors</b>
       <p class="summary">Nethermead ranks and evaluates the competition.</p>
 
-      <ul>
-        <li><%= @result.company.name_proper %></li>
-      </ul>
+      <div class="state-competition-list pull-left">
+          <ul>
+            <li><span class="company-name"><%= @result.company.name_proper %></span> <span class="grey pull-right"><%= @result.percentage_market_share %>%</span></li>
+            <% @result.state_competition.each do |competition| %>
+                <li><span class="company-name"><%= competition[0] %></span> <span class="grey pull-right"><%= competition[1] %>%</span></li>
+            <% end %>
+          </ul>
+      </div>
+      <div class="state-competition-graph pull-right"></div>
     </div>
     <div class="col-md-6">
       <b>Active Competitors</b>
-      <p class="summary">See market information on all competitors in a particular geograph and product category.</p>
+      <p class="summary">See market information on all competitors in a particular geography and product category.</p>
 
       <ul>
         <li><%= @result.company.name_proper %></li>
@@ -169,7 +179,7 @@
 
 
 
-
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript">
     $().ready(function() {
         $('#market-share-graph').css('width',  function(){ return ($(this).attr('data-percentage')+'%')})
@@ -193,5 +203,57 @@
             return false;
         });
 
+        var width = 200,
+                height = 200,
+                radius = Math.min(width, height) / 2;
+
+        var color = d3.scale.category20();
+
+        var pie = d3.layout.pie()
+                .value(function(d) { return d[1]; })
+                .sort(null);
+
+        var arc = d3.svg.arc()
+                .innerRadius(radius - 40)
+                .outerRadius(radius - 5);
+
+        var svg = d3.select(".state-competition-graph").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var data = <%= @result.state_competition.to_json.to_s.html_safe %>;
+        var current_data = ['<%= @result.company.name_proper.to_s.html_safe %>', <%= @result.percentage_market_share %>];
+        var data = [[current_data[0], 0]].concat(data);
+
+        var index = 0;
+        $('.state-competition-list ul li').each(function(i, el) {
+           $(el).css({color: color(index)});
+           index++;
+        });
+
+        var path = svg.datum(data).selectAll("path")
+                .data(pie)
+                .enter().append("path")
+                .attr("fill", function(d, i) { return color(i); })
+                .attr("d", arc)
+                .each(function(d) { this._current = d; }); // store the initial angles
+
+        function change() {
+            data[0][1] = current_data[1];
+            path = path.data(pie); // compute the new angles
+            path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
+        }
+
+        change();
+
+        function arcTween(a) {
+            var i = d3.interpolate(this._current, a);
+            this._current = i(0);
+            return function(t) {
+                return arc(i(t));
+            };
+        }
     });
 </script>

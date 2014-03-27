@@ -268,3 +268,30 @@ $grey1: #727272;
   -o-transition: width 1.0s ease !important;
   transition: width 1.0s ease !important;
 }
+
+.state-competition-graph {
+  width: 200px;
+  height: 200px;
+}
+
+.state-competition-list, .county-competition-list {
+  width: 200px;
+  ul {
+    list-style-type: none;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
+  }
+}
+
+.county-competition-list {
+  color: $green;
+}
+
+.county-competition-graphic {
+  font-size: 120px;
+  width: 150px;
+  line-height: 110px;
+}
