@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  segment_name: MyString
+  segment_type: MyString
+  communication_preference: MyString
+  communication_type: MyString
+  marketing_context: MyString
+
+two:
+  segment_name: MyString
+  segment_type: MyString
+  communication_preference: MyString
+  communication_type: MyString
+  marketing_context: MyString
