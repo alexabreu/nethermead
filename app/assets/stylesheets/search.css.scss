@@ -6,6 +6,7 @@ $green: #299b75;
 $purple: #7e5a78;
 $grey: #b2afa4;
 $grey1: #727272;
+$grey2: #666666;
 
 .twitter-typeahead {
   width: 100%
@@ -269,10 +270,6 @@ $grey1: #727272;
   transition: width 1.0s ease !important;
 }
 
-.state-competition-graph {
-  width: 200px;
-  height: 200px;
-}
 
 .state-competition-list, .county-competition-list {
   width: 200px;
@@ -294,4 +291,27 @@ $grey1: #727272;
   font-size: 120px;
   width: 150px;
   line-height: 110px;
+}
+
+
+.state-competition-graph {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.state-top-competitor {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 50px;
+  left: 50px;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.state-top-competitor-percentage {
+  color: $grey2;
+  font-size: 30px;
+  margin-top: 14px;
 }

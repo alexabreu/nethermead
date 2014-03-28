@@ -117,13 +117,17 @@
 
       <div class="state-competition-list pull-left">
           <ul>
-            <li><span class="company-name"><%= @result.company.name_proper %></span> <span class="grey pull-right"><%= @result.percentage_market_share %>%</span></li>
             <% @result.state_competition.each do |competition| %>
                 <li><span class="company-name"><%= competition[0] %></span> <span class="grey pull-right"><%= competition[1] %>%</span></li>
             <% end %>
           </ul>
       </div>
-      <div class="state-competition-graph pull-right"></div>
+      <div class="state-competition-graph pull-right">
+        <div class="state-top-competitor">
+          <div class="state-top-competitor-percentage"><%= @result.state_competition.first[1] %>%</div>
+          <%= @result.state_competition.first[0] %>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
       <b>Active Competitors</b>
@@ -227,8 +231,6 @@
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
         var data = <%= @result.state_competition.to_json.to_s.html_safe %>;
-        var current_data = ['<%= @result.company.name_proper.to_s.html_safe %>', <%= @result.percentage_market_share %>];
-        var data = [[current_data[0], 0]].concat(data);
 
         var index = 0;
         $('.state-competition-list ul li').each(function(i, el) {
@@ -241,15 +243,7 @@
                 .enter().append("path")
                 .attr("fill", function(d, i) { return color(i); })
                 .attr("d", arc)
-                .each(function(d) { this._current = d; }); // store the initial angles
-
-        function change() {
-            data[0][1] = current_data[1];
-            path = path.data(pie); // compute the new angles
-            path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
-        }
-
-        change();
+                .each(function(d) { this._current = d; });
 
         function arcTween(a) {
             var i = d3.interpolate(this._current, a);
