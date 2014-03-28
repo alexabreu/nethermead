@@ -16,7 +16,6 @@ class CreateSearchResultsCountiesCompetitors < ActiveRecord::Migration
     add_reference :search_results_counties_competitors, :company, index: true
     add_reference :search_results_counties_competitors, :product_class, index: true
     add_reference :search_results_counties_competitors, :state, index: true
-    add_reference :search_results_counties_competitors, :search_results_counties, index: true
-	
+
   end
 end
