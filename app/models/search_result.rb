@@ -10,7 +10,7 @@ class SearchResult < ActiveRecord::Base
 
   def percentage_market_share
     if share_company_in_state
-      return share_company_in_state * 100
+      return (share_company_in_state * 100).to_int
     end
     return 20
   end
