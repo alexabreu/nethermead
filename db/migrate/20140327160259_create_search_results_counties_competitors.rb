@@ -13,10 +13,10 @@ class CreateSearchResultsCountiesCompetitors < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_reference :search_results_counties_competitors, :company, index: true
-    add_reference :search_results_counties_competitors, :product_class, index: true
-    add_reference :search_results_counties_competitors, :state, index: true
-    add_reference :search_results_counties_competitors, :search_results_counties, index: true
+    add_reference :search_results_counties_competitors, :company
+    add_reference :search_results_counties_competitors, :product_class
+    add_reference :search_results_counties_competitors, :state
+    add_reference :search_results_counties_competitors, :search_results_counties
 	
   end
 end

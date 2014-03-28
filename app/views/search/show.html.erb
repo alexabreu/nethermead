@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 border-right">
+    <div class="col-md-4">
       <b>Counties of Operation</b>
       <p class="summary">Use targeting and geomapping tools to visualize your competitive landscape.</p>
       <div class="county-competition-graphic pull-left">
@@ -65,8 +65,11 @@
       </div>
       <div class="county-competition-list pull-right">
         <ul>
-          <% @result.counties.each do |county| %>
-              <li><span class="county-name"><%= county %></span></li>
+          <% @result.search_results_county.limit(5).each do |county| %>
+              <li><span class="county-name"><%= county.county_name %></span></li>
+          <% end %>
+          <% if @result.search_results_county.size > 5 %>
+            <li>Additional Counties: <%= @result.search_results_county.size - 5 %></li>
           <% end %>
         </ul>
       </div>
