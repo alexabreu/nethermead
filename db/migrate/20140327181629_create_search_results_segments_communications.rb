@@ -10,10 +10,5 @@ class CreateSearchResultsSegmentsCommunications < ActiveRecord::Migration
 
       t.timestamps
     end
-<<<<<<< HEAD
-=======
-	add_reference :search_results_segments_communications, :segment
-	add_reference :search_results_segments_communications, :search_results_segment
->>>>>>> ddf4d40c9059a143eb1a5acd078506392414223a
   end
 end
