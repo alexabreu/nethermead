@@ -16,4 +16,5 @@
 //= require typeahead.js
 //= require underscore.js
 //= require backbone.js
+//= require sly.min.js
 //= require_tree .

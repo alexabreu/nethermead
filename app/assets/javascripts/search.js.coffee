@@ -89,7 +89,8 @@ CollectionView = Backbone.View.extend({
 
 StateView = ModelView.extend({
   template: _.template($('#state-template').html()),
-  className: 'col-md-3',
+  tagName: 'li',
+  className: '',
   events: {
     'click a': 'select',
   },
@@ -139,6 +140,15 @@ ProductClassesView = CollectionView.extend({
 StatesView = CollectionView.extend({
   ModelView: StateView,
   template: _.template($('#states-template').html()),
+  initialize: ->
+  	console.log(this);
+  	this.on('render', -> console.log('poo'));
+  events: {
+	  'render': 'createCarousel'
+  },
+  createCarousel: ->
+  		console.log('Carousel...');
+  		sly = new Sly('#frame',{itemNav: 'basic', horizontal: true, scrollBar: '.scrollbar', smart: true, mouseDragging: true, dragHandle: true}).init();
 });
 
 markets = new Markets();

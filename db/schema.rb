@@ -155,8 +155,13 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "company_id"
     t.integer  "product_class_id"
     t.integer  "state_id"
-    t.integer  "search_results_counties_id"
+    t.integer  "county_id"
   end
+
+  add_index "search_results_counties_competitors", ["company_id"], name: "index_search_results_counties_competitors_on_company_id"
+  add_index "search_results_counties_competitors", ["county_id"], name: "index_search_results_counties_competitors_on_county_id"
+  add_index "search_results_counties_competitors", ["product_class_id"], name: "index_search_results_counties_competitors_on_product_class_id"
+  add_index "search_results_counties_competitors", ["state_id"], name: "index_search_results_counties_competitors_on_state_id"
 
   create_table "search_results_counties_segments", force: true do |t|
     t.string   "county_name"
@@ -206,8 +211,6 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "preference_rank"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "segment_id"
-    t.integer  "search_results_segment_id"
   end
 
   create_table "segments", force: true do |t|
