@@ -32,6 +32,16 @@ class SearchController < ApplicationController
     ).first
   end
 
+  def export
+    show
+    response.headers['Content-Type'] = 'text/csv'
+    csv_string = CSV.generate do |csv|
+      csv << @result.attribute_names
+      csv << @result.attributes.values
+    end
+    send_data csv_string
+  end
+
   def share
     show
     if params[:email] && params[:email].match(/@/) && params[:message]

@@ -7,6 +7,7 @@
             <div class="methods">
               <a href="#link-modal" data-toggle="modal" data-target="#link-modal"><span class="glyphicon glyphicon-link"></span></a>
               <a href="#share-modal" data-toggle="modal" data-target="#share-modal"><span class="glyphicon glyphicon-share"></span></a>
+              <a href="<%= url_for :controller => 'search', :action => 'export', :slug => @result.company.slug, :state => @result.state.state_name.downcase, :class => @result.product_class.abbr.downcase, :only_path => false, :format => "csv" %>" target="_blank"><span class="glyphicon glyphicon-download"></span></a>
             </div>
           </div>
           <h2 class="pull-left">Market Summary: Results</h2>
