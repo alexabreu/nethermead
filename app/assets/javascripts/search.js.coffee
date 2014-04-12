@@ -84,6 +84,7 @@ CollectionView = Backbone.View.extend({
   add_all: ->
     this.empty();
     this.collection.each(this.add, this);
+    this.trigger('added-all');
     return this;
 });
 
@@ -141,14 +142,13 @@ StatesView = CollectionView.extend({
   ModelView: StateView,
   template: _.template($('#states-template').html()),
   initialize: ->
-  	console.log(this);
-  	this.on('render', -> console.log('poo'));
-  events: {
-	  'render': 'createCarousel'
-  },
-  createCarousel: ->
-  		console.log('Carousel...');
-  		sly = new Sly('#frame',{itemNav: 'basic', horizontal: true, scrollBar: '.scrollbar', smart: true, mouseDragging: true, dragHandle: true}).init();
+    this.bind("added-all", this.create_carousel, this);
+  create_carousel: ->
+    console.log("added all " + this.$('li').length + " states");
+    if(this.collection.length < 3)
+      return;
+    this.$('.scrollbar').removeClass('hidden');
+    new Sly(this.$('.frame'), {horizontal: 1, scrollBar: this.$('.scrollbar') }).init();
 });
 
 markets = new Markets();
