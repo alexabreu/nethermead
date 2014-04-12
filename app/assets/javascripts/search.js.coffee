@@ -148,7 +148,7 @@ StatesView = CollectionView.extend({
     if(this.collection.length < 3)
       return;
     this.$('.scrollbar').removeClass('hidden');
-    new Sly(this.$('.frame'), {horizontal: 1, scrollBar: this.$('.scrollbar') }).init();
+    new Sly(this.$('.frame'), {horizontal: 1, scrollBar: this.$('.scrollbar'),mouseDragging: 1, scrollBy: 1, dragHandle: 1 }).init();
 });
 
 markets = new Markets();
