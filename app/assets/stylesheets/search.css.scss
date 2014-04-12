@@ -299,6 +299,7 @@ $grey2: #666666;
   width: 200px;
   height: 200px;
   position: relative;
+  margin-left: 40px;
 }
 
 .state-top-competitor {
@@ -315,4 +316,52 @@ $grey2: #666666;
   color: $grey2;
   font-size: 30px;
   margin-top: 14px;
+}
+
+ul.no-bullet {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  padding-start: 0px;
+  li {
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+#hexagon {
+  width: 100px;
+  height: 55px;
+  background: $purple;
+  position: relative;
+  color: white;
+  font-size: 30px;
+  margin-top: 24px;
+  text-align: center;
+  line-height: 52px;
+  margin-bottom: 12px;
+}
+
+#hexagon:before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 25px solid $purple;
+}
+
+#hexagon:after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 25px solid $purple;
 }
