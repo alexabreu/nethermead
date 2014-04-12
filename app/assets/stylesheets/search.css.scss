@@ -230,7 +230,7 @@ $grey2: #666666;
 }
 
 .share-box {
-  width: 160px;
+  width: 180px;
   text-align: center;
   border: 1px solid $grey;
   margin-top: 12px;
@@ -294,6 +294,7 @@ $grey2: #666666;
   font-size: 120px;
   width: 150px;
   line-height: 110px;
+  text-align: center;
 }
 
 
@@ -301,6 +302,7 @@ $grey2: #666666;
   width: 200px;
   height: 200px;
   position: relative;
+  margin-left: 40px;
 }
 
 .state-top-competitor {
@@ -330,3 +332,52 @@ $grey2: #666666;
     height: 100%;
     background: #222;
 }
+
+ul.no-bullet {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  padding-start: 0px;
+  li {
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+#hexagon {
+  width: 100px;
+  height: 55px;
+  background: $purple;
+  position: relative;
+  color: white;
+  font-size: 30px;
+  margin-top: 24px;
+  text-align: center;
+  line-height: 52px;
+  margin-bottom: 12px;
+}
+
+#hexagon:before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 25px solid $purple;
+}
+
+#hexagon:after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 25px solid $purple;
+}
+
