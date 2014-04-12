@@ -1,7 +1,9 @@
 development:
-  adapter: sqlite3
+  adapter: postgresql
   database: nethermead
   host: localhost
+  username: nethermead
+  password: password
 
 test:
   adapter: sqlite3

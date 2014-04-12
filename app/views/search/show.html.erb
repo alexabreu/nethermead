@@ -64,7 +64,7 @@
       <div class="county-competition-graphic pull-left">
         <span class="stateface stateface-<%= @result.state.abbreviation %> grey"></span>
       </div>
-      <div class="county-competition-list pull-right">
+      <div class="county-competition-list pull-left">
         <ul>
           <% @result.search_results_county.limit(5).each do |county| %>
               <li><span class="county-name"><%= county.county_name %></span></li>
@@ -90,17 +90,22 @@
       <p class="summary">See the total insurable market opportunity against the uninsured consumer population.</p>
     </div>
     <div class="col-md-6">
-      <b>Market Segment</b>
-      <p class="summary">Learn about the communities you want to reach.</p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-2">
-      <div class="number-highlight">23,455</div>
-      <p class="text-muted"><strong>of 55,789 people</strong></p>
+      <div class="number-highlight"><%= number_with_delimiter(@result.state_enrolled, :delimiter => ',') %></div>
+      <p class="text-muted"><strong>of <%= number_with_delimiter(@result.total_market, :delimiter => ',') %> people</strong></p>
     </div>
     <div class="col-md-4">
-      Information Dense Graph
+      <% if @result.total_market > 0 %>
+      <% ((((@result.state_enrolled * 1.0)/@result.total_market)*100).to_i).times do |i| %>
+      <span class="glyphicon glyphicon-user green"></span>
+      <% end %>
+      <% (((((@result.total_market - @result.state_enrolled)*1.0)/@result.total_market)*100).to_i).times do |i| %>
+          <span class="glyphicon glyphicon-user grey"></span>
+      <% end %>
+      <% end %>
     </div>
   </div>
 </div>
