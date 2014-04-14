@@ -354,6 +354,18 @@ $grey2: #666666;
       cursor: pointer;
     }
   }
+
+  .sly-control {
+    font-size: 60px;
+    line-height: 200px;
+    color: grey;
+  }
+
+  .sly-control:hover {
+    cursor: pointer;
+    color: purple;
+
+  }
 }
 
 ul.no-bullet {

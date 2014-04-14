@@ -143,12 +143,19 @@ StatesView = CollectionView.extend({
   template: _.template($('#states-template').html()),
   initialize: ->
     this.bind("added-all", this.create_carousel, this);
+    return;
   create_carousel: ->
     console.log("added all " + this.$('li').length + " states");
     if(this.collection.length < 3)
       return;
     this.$('.scrollbar').removeClass('hidden');
-    new Sly(this.$('.frame'), {horizontal: 1, scrollBar: this.$('.scrollbar'),mouseDragging: 1, scrollBy: 1, dragHandle: 1 }).init();
+    this.$('.sly-control').removeClass('hidden');
+    init_pos = 0;
+    if(markets.state)
+      init_pos = this.collection.indexOf(this.collection.findWhere({id: markets.state.get('id')}));
+    this.sly = new Sly(this.$('.frame'), {itemNav: 'basic', horizontal: 1, scrollBar: this.$('.scrollbar'), mouseDragging: 1,  touchDragging: 1, scrollBy: 1, dragHandle: 1, dynamicHandle: 1, startAt: init_pos, prevPage: this.$('.sly-control.left'),  nextPage: this.$('.sly-control.right') }).init();
+
+    return;
 });
 
 markets = new Markets();
@@ -164,7 +171,9 @@ MarketChooser = Backbone.View.extend({
     this.$el.empty();
     $(".product-classes").remove();
     $('.search-result-button').hide();
-    this.$el.html(new StatesView({collection: markets.states()}).render().add_all().$el);
+    this.states_view = new StatesView({collection: markets.states()}).render();
+    this.$el.html(this.states_view.$el);
+    this.states_view.add_all()
     this.trigger("rendered");
 });
 
@@ -185,9 +194,11 @@ window.CompanySearch = Backbone.View.extend({
     return this;
   prefill: (company, market) ->
     markets.company = company;
+    markets.state = market.state;
     this.$('.company-name-search').val(company.get('name_proper'));
-    market_chooser = new MarketChooser({model: markets.company});
-    market_chooser.on("rendered", ->
+    this.market_chooser = new MarketChooser({model: markets.company});
+    _this = this;
+    this.market_chooser.on("rendered", ->
       markets.states().each((state) ->
         if(market.state.get("id") == state.get("id"))
           state.trigger("select");
@@ -196,8 +207,10 @@ window.CompanySearch = Backbone.View.extend({
         if(market.product_class.get("id") == product_class.get("id"))
           product_class.trigger("select");
       );
+      return;
     );
-    this.$('.market-chooser-container').html(market_chooser.render().$el);
+    this.$('.market-chooser-container').html(this.market_chooser.$el);
+    this.market_chooser.render();
     return true;
 });
 
