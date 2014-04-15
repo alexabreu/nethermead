@@ -90,6 +90,8 @@
       <p class="summary">See the total insurable market opportunity against the uninsured consumer population.</p>
     </div>
     <div class="col-md-6">
+      <b>Market Segment</b>
+      <p class="summary">See market information on all competitors in a particular geography and product category.</p>
     </div>
   </div>
   <div class="row">
@@ -106,6 +108,13 @@
           <span class="glyphicon glyphicon-user grey"></span>
       <% end %>
       <% end %>
+    </div>
+    <div class="col-md-6">
+      <ul class="market-segments">
+        <% @result.market_segments.each do |market_segment| %>
+            <li><div class="rank"><%= market_segment.rank_order %></div> <%= market_segment.segment.name %></li>
+        <% end %>
+      </ol>
     </div>
   </div>
 </div>

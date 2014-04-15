@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328013121) do
+ActiveRecord::Schema.define(version: 20140415052205) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "companies", force: true do |t|
     t.string   "name_upper"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.string   "slug"
   end
 
-  add_index "companies", ["slug"], name: "index_companies_on_slug"
+  add_index "companies", ["slug"], name: "index_companies_on_slug", using: :btree
 
   create_table "counties", force: true do |t|
     t.string   "name"
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "state_id"
   end
 
-  add_index "counties", ["state_id"], name: "index_counties_on_state_id"
+  add_index "counties", ["state_id"], name: "index_counties_on_state_id", using: :btree
 
   create_table "interested_users", force: true do |t|
     t.string   "email"
@@ -60,24 +63,24 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "company_id"
     t.integer  "product_class_id"
     t.integer  "state_id"
-    t.integer  "state_enrolled"
-    t.integer  "state_parent_enrolled"
+    t.integer  "state_enrolled",             limit: 8
+    t.integer  "state_parent_enrolled",      limit: 8
     t.float    "share_company_in_state"
-    t.integer  "num_active_competitors"
+    t.integer  "num_active_competitors",     limit: 8
     t.datetime "reportdate"
-    t.integer  "share_parent_in_state_rank"
+    t.integer  "share_parent_in_state_rank", limit: 8
     t.integer  "available_market"
     t.integer  "total_market"
     t.text     "competition_status"
     t.float    "share_parent_in_state_ss"
-    t.integer  "num_similar_plans"
-    t.integer  "num_op_county"
+    t.integer  "num_similar_plans",          limit: 8
+    t.integer  "num_op_county",              limit: 8
     t.string   "communication_preference"
   end
 
-  add_index "search_results", ["company_id"], name: "index_search_results_on_company_id"
-  add_index "search_results", ["product_class_id"], name: "index_search_results_on_product_class_id"
-  add_index "search_results", ["state_id"], name: "index_search_results_on_state_id"
+  add_index "search_results", ["company_id"], name: "index_search_results_on_company_id", using: :btree
+  add_index "search_results", ["product_class_id"], name: "index_search_results_on_product_class_id", using: :btree
+  add_index "search_results", ["state_id"], name: "index_search_results_on_state_id", using: :btree
 
   create_table "search_results_competitors", force: true do |t|
     t.string   "company_name"
@@ -93,9 +96,9 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "state_id"
   end
 
-  add_index "search_results_competitors", ["company_id"], name: "index_search_results_competitors_on_company_id"
-  add_index "search_results_competitors", ["product_class_id"], name: "index_search_results_competitors_on_product_class_id"
-  add_index "search_results_competitors", ["state_id"], name: "index_search_results_competitors_on_state_id"
+  add_index "search_results_competitors", ["company_id"], name: "index_search_results_competitors_on_company_id", using: :btree
+  add_index "search_results_competitors", ["product_class_id"], name: "index_search_results_competitors_on_product_class_id", using: :btree
+  add_index "search_results_competitors", ["state_id"], name: "index_search_results_competitors_on_state_id", using: :btree
 
   create_table "search_results_counties", force: true do |t|
     t.string   "county_name"
@@ -134,11 +137,11 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "search_result_id"
   end
 
-  add_index "search_results_counties", ["company_id"], name: "index_search_results_counties_on_company_id"
-  add_index "search_results_counties", ["county_id"], name: "index_search_results_counties_on_county_id"
-  add_index "search_results_counties", ["product_class_id"], name: "index_search_results_counties_on_product_class_id"
-  add_index "search_results_counties", ["search_result_id"], name: "index_search_results_counties_on_search_result_id"
-  add_index "search_results_counties", ["state_id"], name: "index_search_results_counties_on_state_id"
+  add_index "search_results_counties", ["company_id"], name: "index_search_results_counties_on_company_id", using: :btree
+  add_index "search_results_counties", ["county_id"], name: "index_search_results_counties_on_county_id", using: :btree
+  add_index "search_results_counties", ["product_class_id"], name: "index_search_results_counties_on_product_class_id", using: :btree
+  add_index "search_results_counties", ["search_result_id"], name: "index_search_results_counties_on_search_result_id", using: :btree
+  add_index "search_results_counties", ["state_id"], name: "index_search_results_counties_on_state_id", using: :btree
 
   create_table "search_results_counties_competitors", force: true do |t|
     t.string   "company_name"
@@ -158,10 +161,10 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "county_id"
   end
 
-  add_index "search_results_counties_competitors", ["company_id"], name: "index_search_results_counties_competitors_on_company_id"
-  add_index "search_results_counties_competitors", ["county_id"], name: "index_search_results_counties_competitors_on_county_id"
-  add_index "search_results_counties_competitors", ["product_class_id"], name: "index_search_results_counties_competitors_on_product_class_id"
-  add_index "search_results_counties_competitors", ["state_id"], name: "index_search_results_counties_competitors_on_state_id"
+  add_index "search_results_counties_competitors", ["company_id"], name: "index_search_results_counties_competitors_on_company_id", using: :btree
+  add_index "search_results_counties_competitors", ["county_id"], name: "index_search_results_counties_competitors_on_county_id", using: :btree
+  add_index "search_results_counties_competitors", ["product_class_id"], name: "index_search_results_counties_competitors_on_product_class_id", using: :btree
+  add_index "search_results_counties_competitors", ["state_id"], name: "index_search_results_counties_competitors_on_state_id", using: :btree
 
   create_table "search_results_counties_segments", force: true do |t|
     t.string   "county_name"
@@ -181,11 +184,11 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "search_result_id"
   end
 
-  add_index "search_results_counties_segments", ["company_id"], name: "index_search_results_counties_segments_on_company_id"
-  add_index "search_results_counties_segments", ["product_class_id"], name: "index_search_results_counties_segments_on_product_class_id"
-  add_index "search_results_counties_segments", ["search_result_id"], name: "index_search_results_counties_segments_on_search_result_id"
-  add_index "search_results_counties_segments", ["segment_id"], name: "index_search_results_counties_segments_on_segment_id"
-  add_index "search_results_counties_segments", ["state_id"], name: "index_search_results_counties_segments_on_state_id"
+  add_index "search_results_counties_segments", ["company_id"], name: "index_search_results_counties_segments_on_company_id", using: :btree
+  add_index "search_results_counties_segments", ["product_class_id"], name: "index_search_results_counties_segments_on_product_class_id", using: :btree
+  add_index "search_results_counties_segments", ["search_result_id"], name: "index_search_results_counties_segments_on_search_result_id", using: :btree
+  add_index "search_results_counties_segments", ["segment_id"], name: "index_search_results_counties_segments_on_segment_id", using: :btree
+  add_index "search_results_counties_segments", ["state_id"], name: "index_search_results_counties_segments_on_state_id", using: :btree
 
   create_table "search_results_segments", force: true do |t|
     t.integer  "size_num",         limit: 8
@@ -198,9 +201,9 @@ ActiveRecord::Schema.define(version: 20140328013121) do
     t.integer  "state_id"
   end
 
-  add_index "search_results_segments", ["product_class_id"], name: "index_search_results_segments_on_product_class_id"
-  add_index "search_results_segments", ["segment_id"], name: "index_search_results_segments_on_segment_id"
-  add_index "search_results_segments", ["state_id"], name: "index_search_results_segments_on_state_id"
+  add_index "search_results_segments", ["product_class_id"], name: "index_search_results_segments_on_product_class_id", using: :btree
+  add_index "search_results_segments", ["segment_id"], name: "index_search_results_segments_on_segment_id", using: :btree
+  add_index "search_results_segments", ["state_id"], name: "index_search_results_segments_on_state_id", using: :btree
 
   create_table "search_results_segments_communications", force: true do |t|
     t.string   "segment_name"
@@ -215,7 +218,7 @@ ActiveRecord::Schema.define(version: 20140328013121) do
 
   create_table "segments", force: true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "segment_type"
     t.string   "src_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -224,7 +227,7 @@ ActiveRecord::Schema.define(version: 20140328013121) do
   create_table "states", force: true do |t|
     t.string   "state_name"
     t.string   "state_full_name"
-    t.integer  "state_size"
+    t.integer  "state_size",      limit: 8
     t.string   "intptlat"
     t.string   "intptlon"
     t.datetime "created_at"

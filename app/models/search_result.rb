@@ -8,6 +8,10 @@ class SearchResult < ActiveRecord::Base
     SearchResultsCompetitor.where(:product_class_id => product_class_id, :state_id => state_id).order(rank_order: :asc).pluck(:display_name, :market_share)
   end
 
+  def market_segments
+    SearchResultsSegment.where(:product_class_id => product_class_id, :state_id => state_id).order(rank_order: :asc)
+  end
+
   def percentage_market_share
     if share_company_in_state
       return (share_company_in_state * 100).to_int
