@@ -355,6 +355,18 @@ $grey2: #666666;
     }
   }
 
+  .controls {
+    width: 8%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+  }
+
+  .frame-container {
+    width: 80%;
+    display: inline-block;
+  }
+
   .sly-control {
     font-size: 60px;
     line-height: 200px;
