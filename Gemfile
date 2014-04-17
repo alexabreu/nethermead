@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Test for mobile and tablet devices server side
+gem 'mobile-fu', '1.3.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 gem 'heroku', '3.3.0'

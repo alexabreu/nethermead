@@ -73,11 +73,12 @@
 
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
-
+<% unless is_mobile_device? %>
 <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
 <script type="text/javascript">
-	FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=Feedback+%26+Support&attachFile=no&searchArea=no", "widgetType": "popup", "buttonType": "text", "buttonText": "TELL US WHAT YOU THINK.", "buttonColor": "white", "buttonBg": "#7e5a78", "alignment": "4", "offset": "300px", "formHeight": "500px", "url": "http://nethermead.freshdesk.com"} );
+	FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=Feedback+%26+Support&attachFile=no&searchArea=no", "widgetType": "popup", "buttonType": "text", "buttonText": "TELL US WHAT YOU THINK.", "buttonColor": "white", "buttonBg": "#7e5a78", "alignment": "4", "offset": "400px", "formHeight": "500px", "url": "http://nethermead.freshdesk.com"} );
 </script>
+<% end %>
 
 </body>
 </html>

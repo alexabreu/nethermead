@@ -293,6 +293,10 @@ $grey2: #666666;
 
 .county-competition-list {
   color: $green;
+  li:nth-child(6) {
+	  color: #999;
+	  font-weight: 700;
+  }
 }
 
 .county-competition-graphic {
