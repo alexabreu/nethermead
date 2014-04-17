@@ -5,7 +5,7 @@ class SearchResult < ActiveRecord::Base
   has_many :search_results_county
 
   def state_competition
-    SearchResultsCompetitor.where(:product_class_id => product_class_id, :state_id => state_id).order(rank_order: :asc).pluck(:display_name, :market_share, :company_id)
+    SearchResultsCompetitor.where(:product_class_id => product_class_id, :state_id => state_id).order(rank_order: :asc).pluck(:company_name, :market_share, :company_id)
   end
   
   def competitor_url(company_id)
