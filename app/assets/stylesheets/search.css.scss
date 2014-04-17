@@ -283,6 +283,11 @@ $grey2: #666666;
     -webkit-margin-start: 0;
     -webkit-margin-end: 0;
     -webkit-padding-start: 0;
+    li {
+	    a {
+		    color: inherit;
+	    }
+    }
   }
 }
 

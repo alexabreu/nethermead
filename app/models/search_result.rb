@@ -5,7 +5,11 @@ class SearchResult < ActiveRecord::Base
   has_many :search_results_county
 
   def state_competition
-    SearchResultsCompetitor.where(:product_class_id => product_class_id, :state_id => state_id).order(rank_order: :asc).pluck(:display_name, :market_share)
+    SearchResultsCompetitor.where(:product_class_id => product_class_id, :state_id => state_id).order(rank_order: :asc).pluck(:display_name, :market_share, :company_id)
+  end
+  
+  def competitor_url(company_id)
+		'/search/' + Company.find(company_id).slug + '/' + self.state_name.downcase + '/' + self.product_class.abbr.downcase
   end
 
   def market_segments

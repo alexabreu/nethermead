@@ -133,7 +133,9 @@
       <div class="state-competition-list pull-left">
           <ul>
             <% @result.state_competition.each do |competition| %>
-                <li><span class="company-name"><%= competition[0] %></span> <span class="grey pull-right"><%= (competition[1]*100).to_i %>%</span></li>
+                <li>
+                <%= link_to(competition[0], @result.competitor_url(competition[2]), {class: 'company-name'})%>
+                <span class="grey pull-right"><%= (competition[1]*100).to_i %>%</span></li>
             <% end %>
           </ul>
       </div>

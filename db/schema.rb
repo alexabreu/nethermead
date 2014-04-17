@@ -39,10 +39,29 @@ ActiveRecord::Schema.define(version: 20140415052205) do
 
   add_index "counties", ["state_id"], name: "index_counties_on_state_id", using: :btree
 
+  create_table "county_health_insurance_resources", id: false, force: true do |t|
+    t.string "fipstate",                           limit: 15
+    t.string "fipscty",                            limit: 15
+    t.text   "county_name"
+    t.text   "state_name"
+    t.float  "num_specialists_hospitals"
+    t.float  "num_pcp"
+    t.float  "num_nursing_residential_facilities"
+    t.float  "num_community_resources"
+    t.float  "num_health_insurance_resources"
+  end
+
   create_table "interested_users", force: true do |t|
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "medicare_state_market", id: false, force: true do |t|
+    t.text  "ma_state"
+    t.float "total_state_market"
+    t.float "available_state_market"
+    t.float "state_penetration_rate"
   end
 
   create_table "product_classes", force: true do |t|
