@@ -17,4 +17,5 @@
 //= require underscore.js
 //= require backbone.js
 //= require sly.min.js
+//= require d3
 //= require_tree .
