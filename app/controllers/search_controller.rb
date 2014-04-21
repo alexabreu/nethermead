@@ -32,6 +32,14 @@ class SearchController < ApplicationController
     ).first
   end
 
+  def targeting
+    show
+  end
+
+  def segmentation
+    show
+  end
+
   def export
     show
     response.headers['Content-Type'] = 'text/csv'

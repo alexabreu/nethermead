@@ -13,6 +13,8 @@ Nethermead::Application.routes.draw do
   
   get 'search/:slug/:state/:class' => 'search#show'
   get 'search/:slug/:state/:class/export' => 'search#export'
+  get 'search/:slug/:state/:class/targeting' => 'search#targeting'
+  get 'search/:slug/:state/:class/segmentation' => 'search#segmentation'
   post 'search/:slug/:state/:class/share' => 'search#share'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

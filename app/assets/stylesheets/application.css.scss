@@ -494,3 +494,21 @@ p.summary {
 .text-upper {
   text-transform: uppercase;
 }
+
+#main-breadcrumb.breadcrumb {
+  padding: 8px 0px;
+  margin-bottom: 0px; 
+  list-style: none;
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+#main-breadcrumb.breadcrumb>li+li:before {
+content: "»";
+padding: 0 5px;
+color: #ccc;
+}
+
+#main-breadcrumb.breadcrumb a { 
+color: $green;
+}

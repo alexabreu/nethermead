@@ -1,0 +1,68 @@
+<header>
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="share-box pull-right">
+            <div class="title pull-left">Share</div>
+            <div class="methods">
+              <a href="#link-modal" data-toggle="modal" data-target="#link-modal"><span class="glyphicon glyphicon-link"></span></a>
+              <a href="#share-modal" data-toggle="modal" data-target="#share-modal"><span class="glyphicon glyphicon-share"></span></a>
+              <a href="<%= url_for :controller => 'search', :action => 'export', :slug => @result.company.slug, :state => @result.state.state_name.downcase, :class => @result.product_class.abbr.downcase, :only_path => false, :format => "csv" %>" target="_blank"><span class="glyphicon glyphicon-save"></span></a>
+            </div>
+          </div>
+          
+          <ol class="breadcrumb" id="main-breadcrumb">
+            <li><a href="<%= url_for :controller => 'search', :action => 'show', :slug => @result.company.slug, :state => @result.state.state_name.downcase, :class => @result.product_class.abbr.downcase, :only_path => false %>">Market Summary</a></li>
+            <li class="active">Segmentation</li>
+          </ol>
+          <h2 class="pull-left">Market Segmenation</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="summary">See the Nethermead analysis snapshot below. The Nethermead platform will allow healthcare companies to conduct deeper analysis of these items, run simulations and forecasts and generate plans for execution.
+          </p>
+        </div>
+      </div>
+  </div>
+</header>
+
+<hr />
+
+<div class="container-fluid container-padded">
+  <div class="row">
+    <div class="col-md-12 result-title">
+    <h3 class="grey pull-left tall"><%= @result.company.name_proper %></h3>
+    <div class="circle-sm pull-left"><div class="product-class-abbr"><%= @result.product_class.abbr %></div></div>
+    <span class="stateface stateface-replace stateface-<%= @result.state.abbreviation %> green pull-left"></span>
+    <a class="pull-right edit-search" href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+    </div>
+  </div>
+</div>
+
+<div id="company-search"></div>
+
+
+<script type="text/javascript">
+    $().ready(function() {
+        var $company_search = $('#company-search');
+        $company_search.hide();
+        var company_search = new window.CompanySearch();
+        var is_open = false;
+        $('.edit-search').click(function(e) {
+            e.preventDefault();
+            if(is_open) {
+                $company_search.slideUp();
+            } else {
+                $('#company-search').html(company_search.render().$el);
+                company_search.prefill(
+                        new window.Company(<%= @result.company.to_json.to_s.html_safe %>),
+                        new window.Market(<%= @result.to_json(:include => [:product_class, :state]).to_s.html_safe %>
+                        ));
+                $company_search.slideDown();
+            }
+            is_open = !is_open;
+            return false;
+        });
+    });
+</script>
