@@ -40,6 +40,10 @@ class SearchController < ApplicationController
     show
   end
 
+  def map
+    show
+  end
+
   def export
     show
     response.headers['Content-Type'] = 'text/csv'

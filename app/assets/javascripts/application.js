@@ -18,4 +18,6 @@
 //= require backbone.js
 //= require sly.min.js
 //= require d3
+//= require queue.v1.min.js
+//= require topojson.v1.min.js
 //= require_tree .
