@@ -89,7 +89,7 @@ svg
     .call(zoom) // delete this line to disable free zooming
     .call(zoom.event);
 
-d3.json("/assets/states.json", function(error, topology) {
+d3.json("<%= asset_path 'states.json' %>", function(error, topology) {
 	console.log(topology);
 	g.append("path")
 		.datum(topojson.mesh(topology, topology.objects.states, function(a,b) {return a !== b; }))
@@ -101,7 +101,7 @@ d3.json("/assets/states.json", function(error, topology) {
 	
 });
 
-d3.json("/assets/counties.json", function(error, us) {
+d3.json("<%= asset_path 'counties.json' %>", function(error, us) {
 	console.log(us);
   counties.selectAll("path")
       .data(topojson.feature(us, us.objects.counties).features)
