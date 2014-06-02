@@ -31,6 +31,17 @@ class SearchController < ApplicationController
         product_class_id: product_class.id
     ).first
   end
+  
+  def map
+  	company = Company.where(Company.arel_table[:slug].matches(params[:slug])).first
+    state = State.where(State.arel_table[:state_name].matches(params[:state].upcase)).first
+    product_class = ProductClass.where(ProductClass.arel_table[:abbr].matches(params[:class].upcase)).first
+    @result = SearchResult.where(
+        company_id: company.id,
+        state_id: state.id,
+        product_class_id: product_class.id
+    ).first
+  end
 
   def export
     show

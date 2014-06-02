@@ -12,6 +12,7 @@ Nethermead::Application.routes.draw do
   post 'search' => 'search#find'
   
   get 'search/:slug/:state/:class' => 'search#show'
+  get 'search/:slug/:state/:class/map' => 'search#map'
   get 'search/:slug/:state/:class/export' => 'search#export'
   post 'search/:slug/:state/:class/share' => 'search#share'
 
